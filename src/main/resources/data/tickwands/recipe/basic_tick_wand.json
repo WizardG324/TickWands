@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "C": {
+      "item": "minecraft:clock"
+    },
+    "S": {
+      "item": "minecraft:stick"
+    },
+    "R": {
+      "item": "minecraft:redstone"
+    }
+  },
+  "pattern": [
+    "CR ",
+    "RS ",
+    "  S"
+  ],
+  "result": {
+    "count": 1,
+    "id": "tickwands:basic_tick_wand"
+  }
+}
