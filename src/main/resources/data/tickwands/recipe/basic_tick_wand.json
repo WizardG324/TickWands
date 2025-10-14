@@ -5,17 +5,17 @@
     "C": {
       "item": "minecraft:clock"
     },
-    "S": {
-      "item": "minecraft:stick"
+    "I": {
+      "item": "minecraft:iron_ingot"
     },
     "R": {
       "item": "minecraft:redstone"
     }
   },
   "pattern": [
-    "CR ",
-    "RS ",
-    "  S"
+    " RC",
+    " IR",
+    "I  "
   ],
   "result": {
     "count": 1,

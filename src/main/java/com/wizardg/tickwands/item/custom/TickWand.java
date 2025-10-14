@@ -131,6 +131,12 @@ public class TickWand extends Item {
     }
     */
 
+    // Removes the reequip animation whenever the item receives energy
+    @Override
+    public boolean shouldCauseReequipAnimation(ItemStack oldStack, ItemStack newStack, boolean slotChanged) {
+        return false;
+    }
+
     @Override
     public boolean isDamageable(ItemStack stack) {
         return false;
