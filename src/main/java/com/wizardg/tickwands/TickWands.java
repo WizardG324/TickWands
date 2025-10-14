@@ -3,6 +3,11 @@ package com.wizardg.tickwands;
 import com.wizardg.tickwands.item.ModComponents;
 import com.wizardg.tickwands.item.ModCreativeModeTabs;
 import com.wizardg.tickwands.item.ModItems;
+import com.wizardg.tickwands.item.custom.TickWand;
+import net.minecraft.world.item.Item;
+import net.neoforged.neoforge.capabilities.Capabilities;
+import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
+import net.neoforged.neoforge.energy.ComponentEnergyStorage;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -41,7 +46,9 @@ public class TickWands {
         ModComponents.register(modEventBus);
         ModItems.register(modEventBus);
 
-        //modEventBus.addListener(this::addCreative);
+        // Register energy capabilities for our wand so it can accept energy from other mods
+        modEventBus.addListener(this::onRegisterCapabilities);
+
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
     }
@@ -50,16 +57,22 @@ public class TickWands {
 
     }
 
-    private void addCreative(BuildCreativeModeTabContentsEvent event) {
-        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(ModItems.BASIC_ACCEL_WAND);
-        }
-    }
-
     // You can use SubscribeEvent and let the Event Bus discover methods to call
     @SubscribeEvent
     public void onServerStarting(ServerStartingEvent event) {
         // Do something when the server starts
-        LOGGER.info("HELLO from server starting");
+        //LOGGER.info("HELLO from server starting");
+    }
+
+    private void onRegisterCapabilities(RegisterCapabilitiesEvent event) {
+        ModItems.ITEMS.getEntries().forEach(entry -> {
+            Item item = entry.get();
+
+            // TODO: Change this whenever i add in the advanced wand
+            if (item instanceof TickWand wand) {
+                event.registerItem(Capabilities.EnergyStorage.ITEM, (stack, context) -> new ComponentEnergyStorage(stack, ModComponents.ENERGY_COMPONENT.get(),
+                        wand.getMaxEnergy(null), 500, 10000), item);
+            }
+        });
     }
 }

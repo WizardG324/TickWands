@@ -1,13 +1,11 @@
 {
-  "item.accelerationwand.basic_accel_wand": "Basic Acceleration Wand",
-  "item.accelerationwand.advanced_accel_wand": "Advanced Acceleration Wand",
+  "item.tickwands.basic_tick_wand": "Basic Tick Wand",
+  "item.tickwands.advanced_tick_wand": "Advanced Tick Wand",
 
-  "accelerationwand.configuration.title": "Acceleration Wand Configs",
-  "accelerationwand.configuration.section.accelerationwand.common.toml": "Acceleration Wand Configs",
-  "accelerationwand.configuration.section.accelerationwand.common.toml.title": "Acceleration Wand Configs",
-  "accelerationwand.configuration.cooldownTicks": "Basic Wand Cooldown",
-  "accelerationwand.configuration.blocks": "Wand Block Blacklist",
-  "accelerationwand.configuration.items": "Item List",
-  "creativetab.accelerationwand.acceleration_wands": "Acceleration Wands",
-  "tooltips.accelerationwand.wand_energy": "Energy: %s"
+  "tickwands.configuration.title": "Tick Wands Configs",
+  "tickwands.configuration.cooldownTicks": "Basic Wand Cooldown",
+  "tickwands.configuration.blocks": "Wand Block Blacklist",
+  "tickwands.configuration.items": "Item List",
+  "creativetab.tickwands.tick_wands": "Tick Wands",
+  "tooltips.tickwands.wand_energy": "Energy: %s"
 }

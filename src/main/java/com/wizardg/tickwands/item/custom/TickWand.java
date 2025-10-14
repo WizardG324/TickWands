@@ -33,7 +33,7 @@ public class TickWand extends Item {
     // Make this dynamic later
     private static final int BASIC_WAND_COST = 250;
     private static final int BASIC_WAND_MAX_TICK = 60;
-    private static final int BASIC_WAND_RANDOM_TICK = 10;
+    private static final int BASIC_WAND_RANDOM_TICK = 9;
 
     private final RandomSource random = RandomSource.create();
     private static final Random RAND = new Random();
@@ -48,7 +48,7 @@ public class TickWand extends Item {
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
 
-        tooltipComponents.add(Component.translatable("tooltips.accelerationwand.wand_energy", getCurrentEnergy(stack)).withStyle(ChatFormatting.WHITE));
+        tooltipComponents.add(Component.translatable("tooltips.tickwands.wand_energy", getCurrentEnergy(stack)).withStyle(ChatFormatting.WHITE));
     }
 
     @Override
@@ -113,6 +113,10 @@ public class TickWand extends Item {
 
         if (abilityCooldown.get() > 0) { //
             player.getCooldowns().addCooldown(this, abilityCooldown.get());
+        }
+
+        if (!player.isCreative()) {
+            removeEnergy(item, BASIC_WAND_COST, false);
         }
 
         return InteractionResult.SUCCESS;
