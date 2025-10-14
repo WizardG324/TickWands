@@ -1,0 +1,13 @@
+{
+  "item.accelerationwand.basic_accel_wand": "Basic Acceleration Wand",
+  "item.accelerationwand.advanced_accel_wand": "Advanced Acceleration Wand",
+
+  "accelerationwand.configuration.title": "Acceleration Wand Configs",
+  "accelerationwand.configuration.section.accelerationwand.common.toml": "Acceleration Wand Configs",
+  "accelerationwand.configuration.section.accelerationwand.common.toml.title": "Acceleration Wand Configs",
+  "accelerationwand.configuration.cooldownTicks": "Basic Wand Cooldown",
+  "accelerationwand.configuration.blocks": "Wand Block Blacklist",
+  "accelerationwand.configuration.items": "Item List",
+  "creativetab.accelerationwand.acceleration_wands": "Acceleration Wands",
+  "tooltips.accelerationwand.wand_energy": "Energy: %s"
+}

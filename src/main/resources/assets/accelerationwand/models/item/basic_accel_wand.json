@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "accelerationwand:item/basic_accel_wand"
+  }
+}
