@@ -15,7 +15,7 @@ public class ModItems {
     public static final DeferredItem<Item> BASIC_ACCEL_WAND = ITEMS.register("basic_tick_wand",
             () -> new TickWand(new Item.Properties()
                     .setNoRepair()
-                    .stacksTo(1), Config.BASIC_WAND_COOLDOWN.get(), false));
+                    .stacksTo(1), Config.BASIC_WAND_COOLDOWN, false));
 
     // for later
     //public static final DeferredItem<Item> ADVANCED_ACCEL_WAND = ITEMS.register("advanced_tick_wand",
