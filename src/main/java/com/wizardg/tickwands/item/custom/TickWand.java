@@ -30,6 +30,7 @@ import java.util.function.Supplier;
 
 public class TickWand extends Item {
     private final Supplier<Integer> abilityCooldown;
+    private final boolean isAdvanced;
     // Make this dynamic later
     private static final int BASIC_WAND_COST = 250;
     private static final int BASIC_WAND_MAX_TICK = 60;
@@ -38,10 +39,11 @@ public class TickWand extends Item {
     private final RandomSource random = RandomSource.create();
     private static final Random RAND = new Random();
 
-    public TickWand(Properties properties, Supplier<Integer> abilityCooldown) {
+    public TickWand(Properties properties, Supplier<Integer> abilityCooldown, boolean isAdvanced) {
         super(properties);
 
         this.abilityCooldown = abilityCooldown;
+        this.isAdvanced = isAdvanced;
     }
 
     @Override
@@ -82,12 +84,12 @@ public class TickWand extends Item {
 
         // Pass on blocks that we have blacklisted and render text saying that it's blacklisted.
         if (Config.WAND_BLOCK_BLACKLIST.get().contains(blockId)) {
-            context.getPlayer().displayClientMessage(Component.literal("This is a blacklisted block!").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
+            //context.getPlayer().displayClientMessage(Component.literal("This is a blacklisted block!").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
             return InteractionResult.PASS;
         }
 
         if (getCurrentEnergy(item) <= 0 && !player.isCreative()) {
-            context.getPlayer().displayClientMessage(Component.literal("Not Enough Energy!").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
+            //context.getPlayer().displayClientMessage(Component.literal("Not Enough Energy!").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
             return InteractionResult.PASS;
         }
 
@@ -146,8 +148,8 @@ public class TickWand extends Item {
     }
 
     // Don't believe this should/needs to be any higher. Could possibly change in the future.
-    public int getMaxEnergy(ItemStack item) {
-        return 10000;
+    public int getMaxEnergy() {
+        return isAdvanced ? 100000 : 10000;
     }
 
     private void removeEnergy(ItemStack item, int amount, boolean simulate) {

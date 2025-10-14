@@ -71,7 +71,7 @@ public class TickWands {
             // TODO: Change this whenever i add in the advanced wand
             if (item instanceof TickWand wand) {
                 event.registerItem(Capabilities.EnergyStorage.ITEM, (stack, context) -> new ComponentEnergyStorage(stack, ModComponents.ENERGY_COMPONENT.get(),
-                        wand.getMaxEnergy(null), 500, 10000), item);
+                        wand.getMaxEnergy(), 500, 10000), item);
             }
         });
     }
