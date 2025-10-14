@@ -41,7 +41,7 @@ public class AccelWand extends Item {
     // Make this dynamic later
     private static final int BASIC_WAND_COST = 250;
     private static final int BASIC_WAND_MAX_TICK = 60;
-    private static final int BASIC_WAND_RANDOM_TICK = 8;
+    private static final int BASIC_WAND_RANDOM_TICK = 6;
 
     private final RandomSource random = RandomSource.create();
     private static final Random RAND = new Random();
