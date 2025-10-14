@@ -105,13 +105,15 @@ public class TickWand extends Item {
                 if (ticker != null) {
                     ticker.tick(level, context.getClickedPos(), state, tileEntity);
                 }
-            } else {
+            } else if (state.isRandomlyTicking()) {
                 if (RAND.nextInt(BASIC_WAND_RANDOM_TICK) == 0) {
                     state.randomTick((ServerLevel)level, context.getClickedPos(), random);
                 }
+            } else {
+                // Not a tickable block
+                return InteractionResult.PASS;
             }
         }
-
 
         if (abilityCooldown.get() > 0) {
             player.getCooldowns().addCooldown(this, abilityCooldown.get());
