@@ -29,7 +29,7 @@ import java.util.Random;
 import java.util.function.Supplier;
 
 public class TickWand extends Item {
-    private final Supplier<Integer> abilityCooldown;
+    private final int abilityCooldown;
     private final boolean isAdvanced;
     // Make this dynamic later
     private static final int BASIC_WAND_COST = 250;
@@ -39,7 +39,7 @@ public class TickWand extends Item {
     private final RandomSource random = RandomSource.create();
     private static final Random RAND = new Random();
 
-    public TickWand(Properties properties, Supplier<Integer> abilityCooldown, boolean isAdvanced) {
+    public TickWand(Properties properties, int abilityCooldown, boolean isAdvanced) {
         super(properties);
 
         this.abilityCooldown = abilityCooldown;
@@ -113,8 +113,8 @@ public class TickWand extends Item {
         }
 
 
-        if (abilityCooldown.get() > 0) { //
-            player.getCooldowns().addCooldown(this, abilityCooldown.get());
+        if (abilityCooldown > 0) {
+            player.getCooldowns().addCooldown(this, abilityCooldown);
         }
 
         if (!player.isCreative()) {
