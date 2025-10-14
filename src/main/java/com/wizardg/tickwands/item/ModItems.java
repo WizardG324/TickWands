@@ -1,20 +1,19 @@
-package com.wizardg.accelwand.item;
+package com.wizardg.tickwands.item;
 
-import com.wizardg.accelwand.AccelerationWand;
-import com.wizardg.accelwand.Config;
-import com.wizardg.accelwand.item.custom.AccelWand;
-import net.minecraft.core.Holder;
+import com.wizardg.tickwands.TickWands;
+import com.wizardg.tickwands.Config;
+import com.wizardg.tickwands.item.custom.TickWand;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;
 import net.neoforged.neoforge.registries.DeferredItem;
 import net.neoforged.neoforge.registries.DeferredRegister;
 
 public class ModItems {
-    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(AccelerationWand.MODID);
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TickWands.MODID);
 
     // for now
     public static final DeferredItem<Item> BASIC_ACCEL_WAND = ITEMS.register("basic_accel_wand",
-            () -> new AccelWand(new Item.Properties()
+            () -> new TickWand(new Item.Properties()
                     .setNoRepair()
                     .stacksTo(1), Config.BASIC_WAND_COOLDOWN));
 

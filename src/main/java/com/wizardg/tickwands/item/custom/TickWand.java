@@ -1,21 +1,14 @@
-package com.wizardg.accelwand.item.custom;
+package com.wizardg.tickwands.item.custom;
 
-import com.wizardg.accelwand.AccelerationWand;
-import com.wizardg.accelwand.Config;
-import com.wizardg.accelwand.item.ModComponents;
+import com.wizardg.tickwands.Config;
+import com.wizardg.tickwands.item.ModComponents;
 import net.minecraft.ChatFormatting;
-import net.minecraft.client.Minecraft;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
-import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.EquipmentSlot;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -29,24 +22,23 @@ import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
-import net.neoforged.neoforge.common.util.FakePlayer;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 
 import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
 
-public class AccelWand extends Item {
+public class TickWand extends Item {
     private final Supplier<Integer> abilityCooldown;
     // Make this dynamic later
     private static final int BASIC_WAND_COST = 250;
     private static final int BASIC_WAND_MAX_TICK = 60;
-    private static final int BASIC_WAND_RANDOM_TICK = 6;
+    private static final int BASIC_WAND_RANDOM_TICK = 10;
 
     private final RandomSource random = RandomSource.create();
     private static final Random RAND = new Random();
 
-    public AccelWand(Properties properties, Supplier<Integer> abilityCooldown) {
+    public TickWand(Properties properties, Supplier<Integer> abilityCooldown) {
         super(properties);
 
         this.abilityCooldown = abilityCooldown;

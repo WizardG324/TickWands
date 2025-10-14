@@ -1,7 +1,7 @@
-package com.wizardg.accelwand.item;
+package com.wizardg.tickwands.item;
 
 import com.mojang.serialization.Codec;
-import com.wizardg.accelwand.AccelerationWand;
+import com.wizardg.tickwands.TickWands;
 import net.minecraft.core.component.DataComponentType;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.codec.ByteBufCodecs;
@@ -13,7 +13,7 @@ import java.util.function.Supplier;
 public class ModComponents {
     //Create component register
     public static final DeferredRegister.DataComponents COMPONENTS = DeferredRegister.createDataComponents(Registries.DATA_COMPONENT_TYPE,
-            AccelerationWand.MODID);
+            TickWands.MODID);
 
     //Create our custom energy component for our wands
     public static final Supplier<DataComponentType<Integer>> ENERGY_COMPONENT = COMPONENTS.register("energy",

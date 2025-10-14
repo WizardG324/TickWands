@@ -1,6 +1,6 @@
-package com.wizardg.accelwand.item;
+package com.wizardg.tickwands.item;
 
-import com.wizardg.accelwand.AccelerationWand;
+import com.wizardg.tickwands.TickWands;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -12,7 +12,7 @@ import java.util.function.Supplier;
 
 public class ModCreativeModeTabs {
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TAB =
-            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, AccelerationWand.MODID);
+            DeferredRegister.create(Registries.CREATIVE_MODE_TAB, TickWands.MODID);
 
     public static final Supplier<CreativeModeTab> ACCELERATION_WAND_TAB = CREATIVE_MODE_TAB.register("acceleration_wands_tab",
             () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.BASIC_ACCEL_WAND.get()))
