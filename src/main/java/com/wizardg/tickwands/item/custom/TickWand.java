@@ -2,10 +2,12 @@ package com.wizardg.tickwands.item.custom;
 
 import com.wizardg.tickwands.Config;
 import com.wizardg.tickwands.item.ModComponents;
+import com.wizardg.tickwands.network.payloads.ClientMessagePayload;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -23,6 +25,7 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
+import net.neoforged.neoforge.network.PacketDistributor;
 
 import java.util.List;
 import java.util.Random;
@@ -44,6 +47,22 @@ public class TickWand extends Item {
 
         this.abilityCooldown = abilityCooldown;
         this.isAdvanced = isAdvanced;
+    }
+
+    // This is the only way I can think of how to do this sadly
+    public static void ErrorHandler(Player player, int id) {
+        // Offhand
+        if (id == 0) {
+            player.displayClientMessage(Component.literal("Wand doesn't work in offhand!").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
+        }
+        //Blacklisted block
+        else if (id == 1) {
+            player.displayClientMessage(Component.literal("This is a blacklisted block!").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
+        }
+        //Insufficient energy
+        else if (id == 2) {
+            player.displayClientMessage(Component.literal("Insufficient Energy!").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
+        }
     }
 
     @Override
@@ -76,7 +95,7 @@ public class TickWand extends Item {
 
         // Maybe someday different functionality in offhand?
         if (context.getHand() == InteractionHand.OFF_HAND) {
-            //context.getPlayer().displayClientMessage(Component.literal("Wand Doesn't work in off-hand!").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
+            PacketDistributor.sendToPlayer((ServerPlayer)player, new ClientMessagePayload(0));
             return InteractionResult.PASS;
         }
 
@@ -84,12 +103,12 @@ public class TickWand extends Item {
 
         // Pass on blocks that we have blacklisted and render text saying that it's blacklisted.
         if (Config.WAND_BLOCK_BLACKLIST.get().contains(blockId)) {
-            //context.getPlayer().displayClientMessage(Component.literal("This is a blacklisted block!").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
+            PacketDistributor.sendToPlayer((ServerPlayer)player, new ClientMessagePayload(1));
             return InteractionResult.PASS;
         }
 
         if (getCurrentEnergy(item) <= 0 && !player.isCreative()) {
-            //context.getPlayer().displayClientMessage(Component.literal("Not Enough Energy!").withStyle(ChatFormatting.RED).withStyle(ChatFormatting.BOLD), true);
+            PacketDistributor.sendToPlayer((ServerPlayer)player, new ClientMessagePayload(2));
             return InteractionResult.PASS;
         }
 

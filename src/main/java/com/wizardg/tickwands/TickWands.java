@@ -4,10 +4,14 @@ import com.wizardg.tickwands.item.ModComponents;
 import com.wizardg.tickwands.item.ModCreativeModeTabs;
 import com.wizardg.tickwands.item.ModItems;
 import com.wizardg.tickwands.item.custom.TickWand;
+import com.wizardg.tickwands.network.PacketHandler;
 import net.minecraft.world.item.Item;
 import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.capabilities.RegisterCapabilitiesEvent;
 import net.neoforged.neoforge.energy.ComponentEnergyStorage;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
+import net.neoforged.neoforge.network.handling.ClientPayloadContext;
+import net.neoforged.neoforge.network.registration.PayloadRegistrar;
 import org.slf4j.Logger;
 
 import com.mojang.logging.LogUtils;
@@ -48,6 +52,8 @@ public class TickWands {
 
         // Register energy capabilities for our wand so it can accept energy from other mods
         modEventBus.addListener(this::onRegisterCapabilities);
+        // Register our payloads
+        modEventBus.addListener(PacketHandler::registerPayloads);
 
         // Register our mod's ModConfigSpec so that FML can create and load the config file for us
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.SPEC);
@@ -68,7 +74,6 @@ public class TickWands {
         ModItems.ITEMS.getEntries().forEach(entry -> {
             Item item = entry.get();
 
-            // TODO: Change this whenever i add in the advanced wand
             if (item instanceof TickWand wand) {
                 event.registerItem(Capabilities.EnergyStorage.ITEM, (stack, context) -> new ComponentEnergyStorage(stack, ModComponents.ENERGY_COMPONENT.get(),
                         wand.getMaxEnergy(), 500, 10000), item);
