@@ -1,5 +1,6 @@
 package com.wizardg.tickwands;
 
+import com.wizardg.tickwands.block.ModBlocks;
 import com.wizardg.tickwands.item.ModComponents;
 import com.wizardg.tickwands.item.ModCreativeModeTabs;
 import com.wizardg.tickwands.item.ModItems;
@@ -49,6 +50,7 @@ public class TickWands {
         ModCreativeModeTabs.register(modEventBus);
         ModComponents.register(modEventBus);
         ModItems.register(modEventBus);
+        ModBlocks.register(modEventBus);
 
         // Register energy capabilities for our wand so it can accept energy from other mods
         modEventBus.addListener(this::onRegisterCapabilities);

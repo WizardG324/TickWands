@@ -1,6 +1,7 @@
 package com.wizardg.tickwands.item;
 
 import com.wizardg.tickwands.TickWands;
+import com.wizardg.tickwands.block.ModBlocks;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -19,6 +20,8 @@ public class ModCreativeModeTabs {
                     .title(Component.translatable("creativetab.tickwands.tick_wands"))
                     .displayItems((itemDisplayParameters, output) -> {
                         output.accept(ModItems.BASIC_ACCEL_WAND);
+                        output.accept(ModItems.TIME_SHARD);
+                        output.accept(ModBlocks.TIME_END_ORE);
                     }).build());
 
     public static void register(IEventBus eventBus) {

@@ -1,6 +1,9 @@
 {
   "item.tickwands.basic_tick_wand": "Basic Tick Wand",
   "item.tickwands.advanced_tick_wand": "Advanced Tick Wand",
+  "item.tickwands.time_shard": "Time Shard",
+
+  "block.tickwands.time_shard_ore": "Time Shard Ore",
 
   "tickwands.configuration.title": "Tick Wands Configs",
   "tickwands.configuration.cooldownTicks": "Basic Wand Cooldown",

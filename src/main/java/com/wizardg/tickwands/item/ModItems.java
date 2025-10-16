@@ -11,15 +11,13 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class ModItems {
     public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TickWands.MODID);
 
-    // for now
     public static final DeferredItem<Item> BASIC_ACCEL_WAND = ITEMS.register("basic_tick_wand",
             () -> new TickWand(new Item.Properties()
                     .setNoRepair()
                     .stacksTo(1), Config.BASIC_WAND_COOLDOWN, false));
 
-    // for later
-    //public static final DeferredItem<Item> ADVANCED_ACCEL_WAND = ITEMS.register("advanced_tick_wand",
-    //        () -> new Item(new Item.Properties()));
+    public static final DeferredItem<Item> TIME_SHARD = ITEMS.register("time_shard",
+            () -> new Item(new Item.Properties().stacksTo(64).fireResistant()));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
