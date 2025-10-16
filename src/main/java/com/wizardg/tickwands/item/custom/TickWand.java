@@ -27,6 +27,7 @@ import net.neoforged.neoforge.capabilities.Capabilities;
 import net.neoforged.neoforge.energy.IEnergyStorage;
 import net.neoforged.neoforge.network.PacketDistributor;
 
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Random;
 import java.util.function.Supplier;
@@ -49,6 +50,10 @@ public class TickWand extends Item {
         this.isAdvanced = isAdvanced;
     }
 
+    public boolean getIsAdvanced() {
+        return this.isAdvanced;
+    }
+
     // This is the only way I can think of how to do this sadly
     public static void ErrorHandler(Player player, int id) {
         // Offhand
@@ -69,7 +74,8 @@ public class TickWand extends Item {
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, tooltipComponents, tooltipFlag);
 
-        tooltipComponents.add(Component.translatable("tooltips.tickwands.wand_energy", getCurrentEnergy(stack)).withStyle(ChatFormatting.WHITE));
+        DecimalFormat format = new DecimalFormat("#,###");
+        tooltipComponents.add(Component.translatable("tooltips.tickwands.wand_energy", format.format(getCurrentEnergy(stack))).withStyle(ChatFormatting.WHITE));
     }
 
     @Override
@@ -176,7 +182,7 @@ public class TickWand extends Item {
 
     // Don't believe this should/needs to be any higher. Could possibly change in the future.
     public int getMaxEnergy() {
-        return isAdvanced ? 100000 : 10000;
+        return isAdvanced ? 500000 : 10000;
     }
 
     private void removeEnergy(ItemStack item, int amount, boolean simulate) {

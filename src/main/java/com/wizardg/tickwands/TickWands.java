@@ -77,8 +77,13 @@ public class TickWands {
             Item item = entry.get();
 
             if (item instanceof TickWand wand) {
-                event.registerItem(Capabilities.EnergyStorage.ITEM, (stack, context) -> new ComponentEnergyStorage(stack, ModComponents.ENERGY_COMPONENT.get(),
-                        wand.getMaxEnergy(), 500, 10000), item);
+                if (!wand.getIsAdvanced()) {
+                    event.registerItem(Capabilities.EnergyStorage.ITEM, (stack, context) -> new ComponentEnergyStorage(stack, ModComponents.ENERGY_COMPONENT.get(),
+                            wand.getMaxEnergy(), 500, 10000), item);
+                } else {
+                    event.registerItem(Capabilities.EnergyStorage.ITEM, (stack, context) -> new ComponentEnergyStorage(stack, ModComponents.ENERGY_COMPONENT.get(),
+                            wand.getMaxEnergy(), 50000), item);
+                }
             }
         });
     }
