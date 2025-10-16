@@ -40,6 +40,10 @@ public class TickWand extends Item {
     private static final int BASIC_WAND_MAX_TICK = 60;
     private static final int BASIC_WAND_RANDOM_TICK = 9;
 
+    private static final int ADVANCED_WAND_COST = 2500;
+    private static final int ADVANCED_WAND_MAX_TICK = 120;
+    private static final int ADVANCED_WAND_RANDOM_TICK = 4;
+
     private final RandomSource random = RandomSource.create();
     private static final Random RAND = new Random();
 
@@ -122,7 +126,10 @@ public class TickWand extends Item {
         BlockState state = level.getBlockState(context.getClickedPos());
         BlockEntity tileEntity = level.getBlockEntity(context.getClickedPos());
 
-        for (int i = 0; i < RAND.nextInt(5, BASIC_WAND_MAX_TICK); i++) {
+        int ticksToRun = isAdvanced ? (RAND.nextInt(BASIC_WAND_MAX_TICK, ADVANCED_WAND_MAX_TICK + 1)) :
+                RAND.nextInt(5, BASIC_WAND_MAX_TICK);
+
+        for (int i = 0; i < ticksToRun; i++) {
             if (tileEntity != null) {
                 EntityBlock entity = (EntityBlock)state.getBlock();
                 BlockEntityTicker<BlockEntity> ticker = entity.getTicker(level, state, (BlockEntityType<BlockEntity>)tileEntity.getType());
@@ -131,8 +138,14 @@ public class TickWand extends Item {
                     ticker.tick(level, context.getClickedPos(), state, tileEntity);
                 }
             } else if (state.isRandomlyTicking()) {
-                if (RAND.nextInt(BASIC_WAND_RANDOM_TICK) == 0) {
-                    state.randomTick((ServerLevel)level, context.getClickedPos(), random);
+                if (isAdvanced) {
+                    if (RAND.nextInt(ADVANCED_WAND_RANDOM_TICK) == 0) {
+                        state.randomTick((ServerLevel)level, context.getClickedPos(), random);
+                    }
+                } else {
+                    if (RAND.nextInt(BASIC_WAND_RANDOM_TICK) == 0) {
+                        state.randomTick((ServerLevel)level, context.getClickedPos(), random);
+                    }
                 }
             } else {
                 // Not a tickable block
@@ -140,12 +153,20 @@ public class TickWand extends Item {
             }
         }
 
-        if (abilityCooldown.get() > 0) {
+        // Might make the advanced wand have a non-changeable 5 tick cooldown haven't decided yet
+        if (abilityCooldown.get() > 0 && !isAdvanced) {
             player.getCooldowns().addCooldown(this, abilityCooldown.get());
         }
 
         if (!player.isCreative()) {
-            removeEnergy(item, BASIC_WAND_COST, false);
+            if (isAdvanced) {
+                float multiplier = RAND.nextFloat(3.0F, 9.0F);
+                int energyCost = (int)(ADVANCED_WAND_COST * multiplier);
+
+                removeEnergy(item, energyCost, false);
+            } else {
+                removeEnergy(item, BASIC_WAND_COST, false);
+            }
         }
 
         return InteractionResult.SUCCESS;

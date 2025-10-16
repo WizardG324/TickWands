@@ -16,10 +16,11 @@ public class ModCreativeModeTabs {
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, TickWands.MODID);
 
     public static final Supplier<CreativeModeTab> ACCELERATION_WAND_TAB = CREATIVE_MODE_TAB.register("tickwands_tab",
-            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.BASIC_ACCEL_WAND.get()))
+            () -> CreativeModeTab.builder().icon(() -> new ItemStack(ModItems.BASIC_TICK_WAND.get()))
                     .title(Component.translatable("creativetab.tickwands.tick_wands"))
                     .displayItems((itemDisplayParameters, output) -> {
-                        output.accept(ModItems.BASIC_ACCEL_WAND);
+                        output.accept(ModItems.BASIC_TICK_WAND);
+                        output.accept(ModItems.ADVANCED_TICK_WAND);
                         output.accept(ModItems.TIME_SHARD);
                         output.accept(ModBlocks.TIME_END_ORE);
                     }).build());
