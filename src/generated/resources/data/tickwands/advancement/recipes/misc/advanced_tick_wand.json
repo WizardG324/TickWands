@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "tickwands:advanced_tick_wand"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_time_shard": {
+      "conditions": {
+        "items": [
+          {
+            "items": "tickwands:time_shard"
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe",
+      "has_time_shard"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "tickwands:advanced_tick_wand"
+    ]
+  }
+}

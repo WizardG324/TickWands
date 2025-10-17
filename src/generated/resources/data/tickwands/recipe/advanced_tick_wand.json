@@ -2,14 +2,14 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
-    "T": {
-      "item": "tickwands:time_shard"
+    "N": {
+      "item": "minecraft:netherite_ingot"
     },
     "S": {
       "item": "minecraft:nether_star"
     },
-    "N": {
-      "item": "minecraft:netherite_ingot"
+    "T": {
+      "item": "tickwands:time_shard"
     }
   },
   "pattern": [
