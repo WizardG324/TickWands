@@ -1,7 +1,7 @@
 package com.wizardg.tickwands.item;
 
-import com.wizardg.tickwands.TickWands;
 import com.wizardg.tickwands.Config;
+import com.wizardg.tickwands.TickWands;
 import com.wizardg.tickwands.item.custom.TickWand;
 import net.minecraft.world.item.Item;
 import net.neoforged.bus.api.IEventBus;

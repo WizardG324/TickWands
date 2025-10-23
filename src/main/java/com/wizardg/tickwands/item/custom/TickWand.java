@@ -40,7 +40,7 @@ public class TickWand extends Item {
     private static final int BASIC_WAND_MAX_TICK = 60;
     private static final int BASIC_WAND_RANDOM_TICK = 9;
 
-    private static final int ADVANCED_WAND_COST = 2500;
+    private static final int ADVANCED_WAND_COST = 7500;
     private static final int ADVANCED_WAND_MAX_TICK = 120;
     private static final int ADVANCED_WAND_RANDOM_TICK = 4;
 
