@@ -1,0 +1,30 @@
+package com.wizardg.tickwands.item;
+
+import com.wizardg.tickwands.Config;
+import com.wizardg.tickwands.TickWands;
+import com.wizardg.tickwands.item.custom.TickWand;
+import net.minecraft.world.item.Item;
+import net.neoforged.bus.api.IEventBus;
+import net.neoforged.neoforge.registries.DeferredItem;
+import net.neoforged.neoforge.registries.DeferredRegister;
+
+public class ModItems {
+    public static final DeferredRegister.Items ITEMS = DeferredRegister.createItems(TickWands.MODID);
+
+    public static final DeferredItem<Item> BASIC_TICK_WAND = ITEMS.registerItem("basic_tick_wand",
+            properties -> new TickWand(properties
+                    .setNoCombineRepair()
+                    .stacksTo(1), Config.BASIC_WAND_COOLDOWN, false));
+
+    public static final DeferredItem<Item> ADVANCED_TICK_WAND = ITEMS.registerItem("advanced_tick_wand",
+            properties -> new TickWand(properties
+                    .setNoCombineRepair()
+                    .stacksTo(1), Config.BASIC_WAND_COOLDOWN, true));
+
+    public static final DeferredItem<Item> TIME_SHARD = ITEMS.registerSimpleItem("time_shard",
+            properties -> properties.stacksTo(64).fireResistant());
+
+    public static void register(IEventBus eventBus) {
+        ITEMS.register(eventBus);
+    }
+}

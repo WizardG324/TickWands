@@ -1,0 +1,6 @@
+{
+  "model": {
+    "type": "minecraft:model",
+    "model": "tickwands:item/basic_tick_wand"
+  }
+}

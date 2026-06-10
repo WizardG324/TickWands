@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "N": "minecraft:netherite_ingot",
+    "S": "minecraft:nether_star",
+    "T": "tickwands:time_shard"
+  },
+  "pattern": [
+    " TS",
+    " NT",
+    "N  "
+  ],
+  "result": {
+    "id": "tickwands:advanced_tick_wand"
+  }
+}
